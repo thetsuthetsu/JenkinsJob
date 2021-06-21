@@ -27,7 +27,7 @@ pipeline {
 
 // メールをGmailに送信する
 def sendMail(result) {
-    mail to: "tetsuo.hino@veriserve.co.jp",
+    mail to: "thetsuthetsu@gmail.com",
         subject: "${env.JOB_NAME} #${env.BUILD_NUMBER} [${result}]",
         body: "Build URL: ${env.BUILD_URL}.\n\n"
 }
