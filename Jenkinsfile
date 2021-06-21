@@ -1,5 +1,3 @@
-#!/usr/bin/env groovy
-
 pipeline {
     agent any
     stages {
@@ -21,8 +19,15 @@ pipeline {
     }
     post {
         always {
-            mail = load "${pwd()}/script/mail.groovy"
-            mail.send(currentBuild.currentResult)
+            sendMail(currentBuild.currentResult)
         }
     }
+}
+
+
+// メールをGmailに送信する
+def sendMail(result) {
+    mail to: "tetsuo.hino@veriserve.co.jp",
+        subject: "${env.JOB_NAME} #${env.BUILD_NUMBER} [${result}]",
+        body: "Build URL: ${env.BUILD_URL}.\n\n"
 }
