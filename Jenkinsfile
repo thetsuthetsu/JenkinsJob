@@ -18,9 +18,9 @@ pipeline {
                 synopsys_detect detectProperties: '--blackduck.url=https://192.168.150.213 --blackduck.username=sysadmin --blackduck.password=blackduck --blackduck.trust.cert=true', downloadStrategyOverride: [$class: 'ScriptOrJarDownloadStrategy']
             }
         }
-        post {
-            mail = load "${pwd()}/script/mail.groovy"
-            mail.send(currentBuild.currentResult)
-        }
+    }
+    post {
+        mail = load "${pwd()}/script/mail.groovy"
+        mail.send(currentBuild.currentResult)
     }
 }
