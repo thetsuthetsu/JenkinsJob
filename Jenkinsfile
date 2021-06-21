@@ -20,7 +20,9 @@ pipeline {
         }
     }
     post {
-        mail = load "${pwd()}/script/mail.groovy"
-        mail.send(currentBuild.currentResult)
+        always {
+            mail = load "${pwd()}/script/mail.groovy"
+            mail.send(currentBuild.currentResult)
+        }
     }
 }
